@@ -1,34 +1,35 @@
 <?php
 
-namespace Crud\Classes;
-
+namespace app\bd;
 use PDO;
-use PDOException;
 
 class Banco
 {
     private static $instancia = null;
     private $conexao;
-    private $host = 'localhost'; 
+    
+    private $host = 'localhost';
     private $username = 'root';
     private $name_bd = 'crud-app';
     private $pass = '';
 
+
     private function __construct()
     {
-        try 
+        try
         {
             $this->conexao = new PDO("mysql:host={$this->host};dbname={$this->name_bd}", $this->username, $this->pass);
+            
+            // Modo de erro do para o BD
+            $this->conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }catch(PDOException $e)
         {
-            die("Erro na conexao com o banco de dados!" . $e->getMessage());
+            die ("Não fo possivel a conexao com o banco de dados! " . $e->getMessage());
         }
     }
 
     /**
-     * Summary of getInstancia
-     * Responsavel por retornar uma unica instancia apenas existente em todo projeto
-     * @return \Crud\Classes\Banco
+     * Retorna o objeto da classe Banco ou o mesmo ja criado para a conexao do banco de dados
      */
     public static function getInstancia(): Banco
     {
@@ -36,14 +37,12 @@ class Banco
         {
             self::$instancia = new Banco();
         }
-        
+
         return self::$instancia;
     }
 
     /**
-     * Summary of getConexao
-     * Responsavel por retornar o objeto que contem o resultado da conexao com o banco de dados
-     * @return \PDO
+     * Retorna a unica conexao realizada com o banco de dados
      */
     public function getConexao(): PDO
     {

@@ -1,8 +1,8 @@
 {
-    "name": "crud/classes",
+    "name": "hugoj/c-r-u-d",
     "autoload": {
         "psr-4": {
-            "Crud\\Classes\\": "src/"
+            "app\\": "app"
         }
     },
     "authors": [
@@ -11,5 +11,7 @@
             "email": "131496781+MusgoNato@users.noreply.github.com"
         }
     ],
-    "require": {}
+    "require": {
+        "league/plates": "^3.6"
+    }
 }
