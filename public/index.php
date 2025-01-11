@@ -5,7 +5,14 @@ require '../routes/router.php';
 
 use app\bd\Banco;
 
-$banco = Banco::getInstancia();
+// Instancia da conexao com o BD
+try
+{
+    $banco = Banco::getInstancia();
+}catch(Exception $e)
+{
+    die("Erro ao conectar-se ao site!");
+}
 
 try
 {

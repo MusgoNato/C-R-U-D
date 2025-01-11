@@ -1,8 +1,10 @@
 <?php $this->layout("master"); ?>
-
-
-<h1>HOME</h1>
+<?php $this->start("home"); ?>
+<h1><a href="/">HOME</a></h1>
 <a href="/create">Criar</a>
-<a href="/Delete">Deletar</a>
-<a href="/Update">Atualizar</a>
-<a href="/Search">Buscar</a>
+<a href="/delete">Deletar</a>
+<a href="/update">Atualizar</a>
+<a href="/search">Buscar</a>
+<a href="/list">Listar</a>
+<?php $this->stop(); ?>
+

@@ -1,7 +1,8 @@
 <?php
 
-function load(string $controller, string $action)
-{    try
+function load(string $controller, string $method)
+{    
+    try
     {
         $controllerNamespace = "app\\controllers\\{$controller}";
         if(!class_exists($controllerNamespace))
@@ -11,16 +12,13 @@ function load(string $controller, string $action)
         
         $controllerInstance = new $controllerNamespace();
 
-        if(!method_exists($controllerInstance, $action))
+        if(!method_exists($controllerInstance, $method))
         {
-            throw new Exception
-            (
-                "O metodo {$action} nao existe no controller {$controller}"
-            );
+            throw new Exception("O metodo {$method} nao existe no controller {$controller}");
         }
 
         // Transformo em um objeto qualquer requisição que foi feita, sendo POST ou GET
-        $controllerInstance->$action((object)$_REQUEST);
+        $controllerInstance->$method((object)$_REQUEST);
     } catch(Exception $e)
     {
         echo $e->getMessage();
@@ -35,6 +33,7 @@ $router =
     [
         "/" => fn() => load("HomeController", "index"),
         "/create" => fn() => load("CreateController", "index"),
+        "/list" => fn() => load("ListController", "listar"),
     ],
     
     "POST" =>
