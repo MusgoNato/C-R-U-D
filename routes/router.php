@@ -39,6 +39,7 @@ $router =
     "POST" =>
     [
         "/create" => fn() => load("CreateController", "store"),
+        "/list" => fn() => load("ListController", "listar"),
     ],
 ];
 
