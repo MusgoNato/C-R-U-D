@@ -41,6 +41,7 @@ $router =
         "/create" => fn() => load("CreateController", "store"),
         "/list" => fn() => load("ListController", "listar"),
         "/useraction" => fn() => load("UserActionController", "decision"),
+        "/userupdate" => fn() => load("UserActionController", "update"),
     ],
 
 ];

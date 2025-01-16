@@ -20,6 +20,11 @@
         <?= $this->section("create") ?>
     </div>
 
+    <!-- Atualizar o Usuario -->
+    <div>
+        <?= $this->section("update") ?>
+    </div>
+
     <!-- Listagem -->
     <div>
         <?= $this->section("listarUser") ?>
